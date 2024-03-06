@@ -12,15 +12,15 @@ const PLAYERS = {
 
 function App() {
   const [gameTurns, setGameTurns] = useState([]);
-  const [playerNames, setPlayerNames] = useState(PLAYERS);
+  const [players, setPlayers] = useState(PLAYERS);
   const activePlayer = deriveActivePlayer(gameTurns);
   const board = deriveGameBoard(gameTurns);
-  const winner = deriveWinner(board, playerNames);
+  const winner = deriveWinner(board, players);
   const isDraw = gameTurns.length === 9 && !winner;
 
   function handlePlayerNameChange(symbol, newName) {
-    setPlayerNames((players) => ({
-      ...players,
+    setPlayers((playerNames) => ({
+      ...playerNames,
       [symbol]: newName,
     }));
   }
@@ -48,13 +48,13 @@ function App() {
       <main id="game-container">
         <ul id="players" className="highlight-player">
           <Player
-            name={playerNames.X}
+            name={players.X}
             symbol="X"
             handleNameChange={handlePlayerNameChange}
             isActive={activePlayer === "X"}
           />
           <Player
-            name={playerNames.O}
+            name={players.O}
             symbol="O"
             handleNameChange={handlePlayerNameChange}
             isActive={activePlayer === "O"}
